@@ -39,3 +39,4 @@ spec:
                 secretKeyRef:
                   name: mysql-pass
                   key: password
+                  
