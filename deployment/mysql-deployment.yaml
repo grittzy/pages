@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
-  namespace: [student-name]
+  creationTimestamp: null
   labels:
     app: pages
     tier: database
+  name: mysql
+  namespace: brixton
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: pages
       tier: database
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: pages
         tier: database
@@ -22,6 +24,9 @@ spec:
       containers:
         - image: mysql:8.0
           name: mysql
+          ports:
+            - containerPort: 3306
+          resources: {}
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
@@ -36,12 +41,10 @@ spec:
               value: "pages"
             - name: MYSQL_USER
               value: "root"
-          ports:
-            - containerPort: 3306
-              name: mysql
           volumeMounts:
             - name: mysql-persistent-storage
-              mountPath: /-entrypoint-initdb.d
+              mountPath: /docker-entrypoint-initdb.d
       volumes:
         - name: mysql-persistent-storage
           emptyDir: {}
+status: {}
