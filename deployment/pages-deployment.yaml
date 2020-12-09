@@ -17,7 +17,7 @@ spec:
         app: pages
     spec:
       containers:
-        - image: allenchillaus/pages:2.0
+        - image: allenchillaus/pages:pipeline
           name: pages
           ports:
             - containerPort: 8080
