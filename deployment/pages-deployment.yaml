@@ -20,7 +20,7 @@ spec:
         tier: service
     spec:
       containers:
-        - image: allenchillaus/pages:scaling
+        - image: allenchillaus/pages:distributed
           name: pages
           ports:
             - containerPort: 8080
